@@ -11,6 +11,11 @@ public class Fileman
 {
     static private final String dirPath = System.getProperty("user.home")+ File.separator+"~";
 
+    /**
+     * Get List of versions of a file
+     * @param fname the file name
+     * @return all version numbers (time stamps)
+     */
     public TreeSet<Long> getVersions (String fname)
     {
         TreeSet<Long> results = new TreeSet<>(Comparator.reverseOrder());
@@ -37,6 +42,13 @@ public class Fileman
         return results;
     }
 
+    /**
+     * Load a file given name an version number
+     * @param fname the file name
+     * @param timestamp the time stamp
+     * @return file content
+     * @throws IOException if smth went wrong
+     */
     public String load (String fname, long timestamp) throws IOException
     {
         String path = dirPath+fname+File.separator+timestamp;
@@ -44,6 +56,13 @@ public class Fileman
         return new String (bytes, "UTF-8");
     }
 
+    /**
+     * Load version description given file name and version number
+     * @param fname The file name
+     * @param timestamp version number
+     * @return file description
+     * @throws IOException if smth went wrong
+     */
     public String loadDescr (String fname, long timestamp) throws IOException
     {
         String path = dirPath+fname+File.separator+"~"+timestamp;
@@ -51,6 +70,13 @@ public class Fileman
         return new String (bytes, "UTF-8");
     }
 
+    /**
+     * Save file and description
+     * @param content file content
+     * @param fname file name
+     * @param descr description
+     * @throws IOException if smth went wrong
+     */
     public void save (String content, String fname, String descr) throws IOException
     {
         String dir = dirPath+fname;
@@ -62,6 +88,11 @@ public class Fileman
                 descr.getBytes("UTF-8"), StandardOpenOption.CREATE);
     }
 
+    /**
+     * Test
+     * @param args
+     * @throws IOException
+     */
     public static void main (String[] args) throws IOException
     {
         Fileman f = new Fileman();
