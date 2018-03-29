@@ -9,7 +9,13 @@ import java.util.TreeSet;
 
 public class Fileman
 {
-    static private final String dirPath = System.getProperty("user.home")+ File.separator+"~";
+    private final String dirPath;
+
+    public Fileman (String project)
+    {
+        dirPath = System.getProperty("user.home") + File.separator +
+                "~" + project + File.separator;
+    }
 
     /**
      * Get List of versions of a file
@@ -90,12 +96,12 @@ public class Fileman
 
     /**
      * Test
-     * @param args
-     * @throws IOException
+     * @param args ccc
+     * @throws IOException cccc
      */
     public static void main (String[] args) throws IOException
     {
-        Fileman f = new Fileman();
+        Fileman f = new Fileman("repoTest");
         f.save ("hello doof düöß fick", "laladumm", "lalablah test123");
 
         // print all versions
